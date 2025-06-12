@@ -1,4 +1,4 @@
-package TPESPECIALPROG3.Backtracking;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.util.Map;
  class Main {
 
     public static void main(String[] args) {
-        String rutaArchivo = "Backtracking/configuracion.txt"; 
+        String rutaArchivo = "configuracion.txt"; 
 
         try {
             ConfiguracionMaquinas config = cargarConfiguracion(rutaArchivo);

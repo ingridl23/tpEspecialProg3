@@ -1,4 +1,4 @@
-package TPESPECIALPROG3.Backtracking;
+
 import java.util.Map;
 
 public class ConfiguracionMaquinas {

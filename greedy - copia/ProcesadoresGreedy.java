@@ -1,22 +1,21 @@
-
-package TPESPECIALPROG3.greedy;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class ProcesadoresGreedy {
-
-
     private ConfiguracionMaquinas config;
+    private Solucion solucion;
+
 
     public ProcesadoresGreedy(ConfiguracionMaquinas config) {
         this.config = config;
+          this.solucion = new Solucion();
     }
 
-    public Solucion2 resolver() {
+    public Solucion resolver() {
         // Ordenamos máquinas por cantidad de piezas (de mayor a menor)
         List<String> maquinasOrdenadas = new ArrayList<>(config.getMaquinas().keySet());
-     
+        // Usamos una expresión lambda para ordenar las máquinas
         maquinasOrdenadas.sort((m1, m2) -> 
             Integer.compare(config.getMaquinas().get(m2), config.getMaquinas().get(m1))
         );
@@ -39,7 +38,7 @@ public class ProcesadoresGreedy {
             if (piezasRestantes == 0) break;
         }
 
-        Solucion2 solucion = new Solucion2();
+         
         solucion.setMaquinasSeleccionadas(maquinasSeleccionadas);
         solucion.setPiezasProducidas(piezasProducidas);
         solucion.setEstadosGenerados(estadosGenerados);

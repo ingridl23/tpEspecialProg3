@@ -1,6 +1,3 @@
-package TPESPECIALPROG3.Backtracking;
-
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -61,27 +58,30 @@ public class ProcesadoresBacktracking{
         if (solucion.getMaquinas().isEmpty() || estado.getSecuencia().size()< solucion.getMaquinas().size()) {
          
             solucion.setPiezasTotales(piezastotales);
-            solucion.setMaquinas(new HashMap<>(estado.getMaquinas()));
-            solucion.setSecuencia(new ArrayList<>(estado.getSecuencia()));
+            solucion.setMaquinas(new HashMap<>(estado.getMaquinas())); //siempre hacer copias antes de modificar
+            solucion.setSecuencia(new ArrayList<>(estado.getSecuencia()));// """"""""""""lo mismo"""""""""""""""
         }
         return;
     }
 
-
-    if(!solucion.getMaquinas().isEmpty() && estado.getSecuencia().size() >= solucion.getMaquinas().size()){
-                   //ya hay una solucion con menos maquinas
-                   return;
     
-    } 
-              //sigo buscando una solucion posible 
-        
         // Si hay piezas restantes, intentar procesar en cada máquina
         for (String maquina : estado.getMaquinas().keySet()) {
             int piezas = estado.getMaquinas().get(maquina);
-
+            
             if (piezas <= estado.getPiezasRestantes()) {
+               
+               
                 Estado estadocopia = estado.copiar();
                 estadocopia.agregarPieza(maquina);
+                
+                
+                    if(!solucion.getMaquinas().isEmpty() && estado.getSecuencia().size() >= solucion.getMaquinas().size()){
+                                   //ya hay una solucion con menos maquinas
+                                   return;
+                    } 
+                    //sigo buscando una solucion posible
+
                 resolverRec(estadocopia);
                 estadocopia.reducirPieza(maquina);
             }

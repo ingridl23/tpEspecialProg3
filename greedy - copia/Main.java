@@ -1,23 +1,21 @@
-package TPESPECIALPROG3.greedy;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-class Main2 {
+class Main {
 
     public static void main(String[] args) {
-        String rutaArchivo = "TPESPECIALPROG3/greedy/configuracion.txt";
+        String rutaArchivo = "configuracion.txt";
         try {
             ConfiguracionMaquinas config = cargarConfiguracion(rutaArchivo);
             System.out.println("Piezas totales a producir: " + config.getPiezasTotales());
             System.out.println("Máquinas disponibles: " + config.getMaquinas());
 
-            // Ejecutar el algoritmo de backtracking
+            // Ejecutar el algoritmo de greedy
             ProcesadoresGreedy  procesador = new ProcesadoresGreedy(config);
-            Solucion2 solucion = procesador.resolver();
+            Solucion solucion = procesador.resolver();
 
             // Mostrar solución
             System.out.println("\n=== Resultado Greedy===");
@@ -49,7 +47,7 @@ class Main2 {
             int piezas = Integer.parseInt(partes[1].trim());
 
             maquinas.put(nombre, piezas);
-            System.out.println("Leído: '" + nombre + "' produce " + piezas + " piezas"); // DEBUG
+            System.out.println("\n Leído: '" + nombre + "' produce " + piezas + " piezas"); // DEBUG
         }
 
         br.close();

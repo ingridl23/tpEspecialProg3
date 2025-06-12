@@ -1,6 +1,3 @@
-package TPESPECIALPROG3.greedy;
-
-
 import java.util.Map;
 
 public class ConfiguracionMaquinas {

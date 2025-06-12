@@ -1,13 +1,12 @@
-package TPESPECIALPROG3.greedy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Solucion2 {
+public class Solucion {
     private List<String> maquinasSeleccionadas;
     private int piezasProducidas;
     private int estadosGenerados;
 
-    public Solucion2() {
+    public Solucion() {
         this.maquinasSeleccionadas = new ArrayList<>();
         this.piezasProducidas = 0;
         this.estadosGenerados = 0;
@@ -38,7 +37,7 @@ public class Solucion2 {
     }
 
     public void imprimir() {
-        System.out.println("=== Resultado Greedy ===");
+      
         System.out.println("Piezas producidas : " + piezasProducidas);
         System.out.println("Puestas en funcionamiento: " + maquinasSeleccionadas.size());
         System.out.println("Secuencia óptima:");
