@@ -11,6 +11,32 @@ public class ProcesadoresGreedy {
         this.config = config;
           this.solucion = new Solucion();
     }
+    /**
+     * Estrategia de resolución Greedy :
+     *
+     * - Se ordenan las máquinas disponibles de forma descendente según la cantidad de piezas que pueden producir.
+     *   Es decir, primero se intenta usar la máquina que más piezas produce.
+     *
+     * - Desde el estado inicial (sin piezas producidas), se recorre la lista de máquinas ordenadas:
+     *      - Mientras la máquina actual no supere la cantidad de piezas restantes por producir,
+     *        se la agrega a la solución parcial y se actualizan los contadores.
+     *
+     * - El algoritmo finaliza cuando se alcanza exactamente la cantidad de piezas requeridas,
+     *   o cuando ya no hay ninguna máquina que pueda seguir sumando sin pasarse.
+     *
+     * - La heurística aplicada consiste en elegir siempre la máquina que produce más piezas,
+     *   intentando minimizar la cantidad de puestas en funcionamiento (aunque no garantiza óptimo).
+     *
+     * - Se contabiliza un estado generado por cada vez que se elige una máquina.
+     *
+     * - La solución final incluye:
+     *      - La lista de máquinas seleccionadas (en orden de uso).
+     *      - La cantidad total de piezas producidas.
+     *      - El número de estados generados.
+     *
+     *    Este algoritmo no explora todos los caminos posibles ni garantiza la solución óptima,
+     *       pero permite obtener rápidamente una solución factible aplicando una decisión local óptima.
+     */
 
     public Solucion resolver() {
         // Ordenamos máquinas por cantidad de piezas (de mayor a menor)
