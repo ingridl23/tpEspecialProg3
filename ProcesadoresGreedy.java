@@ -79,7 +79,7 @@ public class ProcesadoresGreedy {
         if(piezasRestantes == 0){
 
             solucion.setSecuencia(maquinasSeleccionadas);
-            solucion.setPiezasProducidas(piezasProducidas);
+            solucion.setPiezasTotales(piezasProducidas);
             solucion.setEstadosGenerados(estadosGenerados);
             return solucion;
         }
