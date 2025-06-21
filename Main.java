@@ -5,11 +5,10 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-
- class Main {
+class Main {
 
     public static void main(String[] args) {
-        String rutaArchivo = "configuracion.txt"; 
+        String rutaArchivo = "configuracion.txt";
 
         try {
             ConfiguracionMaquinas config = cargarConfiguracion(rutaArchivo);
@@ -22,34 +21,29 @@ import java.util.Map;
             System.out.println("\n=== Resultado Backtracking ===");
             // Ejecutar el algoritmo de backtracking
             ProcesadoresBacktracking backtracking = new ProcesadoresBacktracking(config);
-            Solucion solucionBT = backtracking.resolver();     
+            Solucion solucionBT = backtracking.resolver();
 
             if (solucionBT == null || solucionBT.getSecuencia().isEmpty()) {
-                 System.out.println("No se encontró ninguna solución posible.");
-                   } else {
-                          solucionBT.imprimir();
-                   }
-
+                System.out.println("No se encontró ninguna solución posible.");
+            } else {
+                solucionBT.imprimir();
+            }
 
             //mostrar solucion para greedy
-            System.out.println("=== Resultado Greedy ===");       
-             ProcesadoresGreedy greedy = new ProcesadoresGreedy(config);
-             Solucion solucionGreedy = greedy.resolver();
+            System.out.println("=== Resultado Greedy ===");
+            ProcesadoresGreedy greedy = new ProcesadoresGreedy(config);
+            Solucion solucionGreedy = greedy.resolver();
 
-             if (solucionGreedy == null || solucionGreedy.getSecuencia().isEmpty()) {
-                 System.out.println("No se encontró ninguna solución posible con el algoritmo greedy.");
-             } else {
-                 solucionGreedy.imprimir();
-             }
-
-
+            if (solucionGreedy == null || solucionGreedy.getSecuencia().isEmpty()) {
+                System.out.println("No se encontró ninguna solución posible con el algoritmo greedy.");
+            } else {
+                solucionGreedy.imprimir();
+            }
 
         } catch (IOException e) {
             System.err.println("Error al leer el archivo: " + e.getMessage());
         }
     }
-
-
 
     public static ConfiguracionMaquinas cargarConfiguracion(String archivo) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(archivo));
@@ -59,11 +53,13 @@ import java.util.Map;
         String linea;
         while ((linea = br.readLine()) != null) {
             linea = linea.trim();
-            if (linea.isEmpty()) continue; // Saltar líneas vacías
-
+            if (linea.isEmpty()) {
+                continue; // Saltar líneas vacías
+            }
             String[] partes = linea.split(",");
-            if (partes.length < 2) continue; // Saltar líneas mal formateadas
-
+            if (partes.length < 2) {
+                continue; // Saltar líneas mal formateadas
+            }
             String nombre = partes[0].trim();
             int piezas = Integer.parseInt(partes[1].trim());
 
