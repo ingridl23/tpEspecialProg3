@@ -50,7 +50,7 @@ public class ProcesadoresGreedy {
         List<String> maquinasSeleccionadas = new ArrayList<>();
         int piezasProducidas = 0;
         int estadosGenerados = 0;
-
+        boolean seSelecciona = false;
         for (String maquina : maquinasOrdenadas) {
             int piezas = config.getMaquinas().get(maquina);
 
@@ -58,16 +58,33 @@ public class ProcesadoresGreedy {
                 maquinasSeleccionadas.add(maquina);
                 piezasRestantes -= piezas;
                 piezasProducidas += piezas;
-                estadosGenerados++; // cada máquina elegida = 1 estado generado
+                estadosGenerados++; // cada máquina elegida = 1 maquina seleccionada y que se cuenta
+                seSelecciona = true;
             }
 
-            if (piezasRestantes == 0) break;
+            if (!seSelecciona) {
+                 estadosGenerados++; // tambien se cuenta el estado generado aun si no se uso la maquina
+
+            }
+
+            if(piezasRestantes == 0){
+                break;
+            }
+
+
         }
 
+
+
+        if(piezasRestantes == 0){
+
+            solucion.setSecuencia(maquinasSeleccionadas);
+            solucion.setPiezasProducidas(piezasProducidas);
+            solucion.setEstadosGenerados(estadosGenerados);
+            return solucion;
+        }
+          return null; // No se pudo alcanzar la cantidad exacta de piezas se devuelve un nnull
+
          
-        solucion.setMaquinasSeleccionadas(maquinasSeleccionadas);
-        solucion.setPiezasProducidas(piezasProducidas);
-        solucion.setEstadosGenerados(estadosGenerados);
-        return solucion;
     }
 }

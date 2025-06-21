@@ -59,9 +59,10 @@ private Map<String, Integer> maquinas;
         secuencia.remove(secuencia.size() - 1); // Elimina la última máquina agregada
     }
 
-    // Estado.java
+    
 public Estado copiar() {
     Estado copia = new Estado(this.piezasRestantes, new HashMap<>(this.maquinas));
+    copia.piezasTotales = this.piezasTotales;
     copia.secuencia = new ArrayList<>(this.secuencia);
     return copia;
 }

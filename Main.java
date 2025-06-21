@@ -13,25 +13,43 @@ import java.util.Map;
 
         try {
             ConfiguracionMaquinas config = cargarConfiguracion(rutaArchivo);
+            System.out.println("datos cargados");
+
             System.out.println("Piezas totales a producir: " + config.getPiezasTotales());
             System.out.println("Máquinas disponibles: " + config.getMaquinas());
 
-            // Ejecutar el algoritmo de backtracking
-            ProcesadoresBacktracking backtracking = new ProcesadoresBacktracking(config);
-            Solucion solucion = backtracking.resolver();     
-
             // Mostrar solución
             System.out.println("\n=== Resultado Backtracking ===");
-            if (solucion == null) {
+            // Ejecutar el algoritmo de backtracking
+            ProcesadoresBacktracking backtracking = new ProcesadoresBacktracking(config);
+            Solucion solucionBT = backtracking.resolver();     
+
+            if (solucionBT == null || solucionBT.getSecuencia().isEmpty()) {
                  System.out.println("No se encontró ninguna solución posible.");
                    } else {
-                          solucion.imprimir();
+                          solucionBT.imprimir();
                    }
+
+
+            //mostrar solucion para greedy
+            System.out.println("=== Resultado Greedy ===");       
+             ProcesadoresGreedy greedy = new ProcesadoresGreedy(config);
+             Solucion solucionGreedy = greedy.resolver();
+
+             if (solucionGreedy == null || solucionGreedy.getSecuencia().isEmpty()) {
+                 System.out.println("No se encontró ninguna solución posible con el algoritmo greedy.");
+             } else {
+                 solucionGreedy.imprimir();
+             }
+
+
 
         } catch (IOException e) {
             System.err.println("Error al leer el archivo: " + e.getMessage());
         }
     }
+
+
 
     public static ConfiguracionMaquinas cargarConfiguracion(String archivo) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(archivo));
